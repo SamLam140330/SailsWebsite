@@ -1,0 +1,128 @@
+<!--detail.ejs-->
+<div class="columns card">
+    <div class="column is-3">
+        <figure class="image">
+            <img src=<%=event.imageURL%>
+        </figure>
+    </div>
+    <div class="column">
+        <div class="box">
+            <h2 class="title">
+                <%=event.eventName%>
+            </h2>
+        </div>
+        <div class="box">
+            <b>Organizer: </b>
+            <%=event.organizer%>
+        </div>
+        <div class="box">
+            <b>Simple Description: </b>
+            <%=event.shortDesc%>
+        </div>
+        <div class="box">
+            <b>Date: </b>
+            <%=event.eventDate%>
+        </div>
+        <div class="box">
+            <b>Time: </b>
+            <%=event.startTime%> to <%=event.endTime%>
+        </div>
+        <div class="box">
+            <b>Venue: </b>
+            <%=event.venue%>
+        </div>
+        <div class="box">
+            <b>Quota: </b>
+            <%=event.quota%>
+        </div>
+    </div>
+</div>
+<div class="columns card is-vcentered">
+    <div class="column is-four-fifths">
+        <div class="columns">
+            <div class="column">
+                <div class="box">
+                    <b>Detail: </b>
+                    <%=event.longDesc%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column is-one-fifth">
+        <button class="button is-primary" type="button" id="registerBtn" onclick="registerEvent()">Register</button>
+    </div>
+</div>
+
+<script>
+    function checkEventStatus() {
+        var userRole = "<%=req.session.userRole%>";
+        var isEventRegister = "<%=eventAdded%>";
+        if (userRole === "student") {
+            document.getElementById("registerBtn").style.visibility = "visible";
+            if (isEventRegister === "true") {
+                document.getElementById("registerBtn").innerHTML = "Unregister";
+                document.getElementById("registerBtn").setAttribute("onclick", "unRegisterEvent()");
+            } else {
+                document.getElementById("registerBtn").innerHTML = "Register";
+                document.getElementById("registerBtn").setAttribute("onclick", "registerEvent()");
+            }
+        } else {
+            document.getElementById("registerBtn").style.visibility = "hidden";
+        }
+    }
+    async function registerEvent() {
+        var userResponse = confirm("Are you sure want to register for this event?");
+        if (userResponse) {
+            var eventID = "<%=event.id%>";
+            var response = await fetch('/user/event/', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ "id": eventID }),
+            });
+
+            if (response.ok) {
+                alert("You have successfully registered for this event");
+                location.reload();
+            } else {
+                if (response.status === 409) {
+                    alert("You have already registered for this event");
+                } else if (response.status === 406) {
+                    alert("This event has been no quota left");
+                } else {
+                    alert("Some went wrong: " + response.status + ": " + response.statusText);
+                }
+            }
+        } else {
+            alert("Register canceled");
+        }
+    };
+    async function unRegisterEvent() {
+        var userResponse = confirm("Are you sure want to unregister for this event?");
+        if (userResponse) {
+            var eventID = "<%=event.id%>";
+            var response = await fetch('/user/event/', {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ "id": eventID }),
+            });
+
+            if (response.ok) {
+                alert("You have successfully unregistered for this event");
+                location.reload();
+            } else {
+                if (response.status === 409) {
+                    alert("You have not yet registered for this event");
+                } else {
+                    alert("Some went wrong: " + response.status + ": " + response.statusText);
+                }
+            }
+        } else {
+            alert("Unregister canceled");
+        }
+    };
+    checkEventStatus();
+</script>

@@ -1,0 +1,111 @@
+<!--registered.ejs-->
+<p>Registered Events</p>
+<div class="columns is-variable is-1" id="eventTable">
+</div>
+
+<div class="column is-full">
+    <nav class="pagination" aria-label="pagination">
+        <a class="pagination-previous" id="previousButton">Previous</a>
+        <a class="pagination-next" id="nextButton">Next page</a>
+        <ul class="pagination-list">
+            <li>
+                <a class="pagination-link" id="firstLink">1</a>
+            </li>
+            <li>
+                <span class="pagination-ellipsis">&hellip;</span>
+            </li>
+            <li>
+                <a class="pagination-link" id="previousLink">45</a>
+            </li>
+            <li>
+                <a class="pagination-link is-current" id="currentLink">46</a>
+            </li>
+            <li>
+                <a class="pagination-link" id="nextLink">47</a>
+            </li>
+            <li>
+                <span class="pagination-ellipsis">&hellip;</span>
+            </li>
+            <li>
+                <a class="pagination-link" id="lastLink">86</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script>
+    async function fetchData(perPage, current) {
+        var response = await fetch('/events/registered?perPage=' + perPage + '&current=' + current);
+        if (response.ok) {
+            var events = await response.json();
+            var content = "";
+            events.forEach(function (event) {
+                content += '<div class="column is-one-third">';
+                content += '<div class="box">';
+                content += '<div class="card-image">';
+                content += '<figure class="image is-5by3">' + '<img alt="' + event.eventName + '" src= ' + event.imageURL + '>' + '</figure>';
+                content += '</div>';
+                content += '<div class="card-content">';
+                content += '<div class="media">';
+                content += '<div class="media-left">';
+                content += '<figure class="image is-48x48"><img alt="placeholders" src="https://bulma.io/images/placeholders/96x96.png"></figure>';
+                content += '</div>';
+                content += '<div class="media-content">';
+                content += '<p class="title is-4"><a href="http://localhost:1337/events/detail/' + event.id + '">' + event.eventName + '</a></p>';
+                content += '<p class="subtitle is-6">' + event.organizer + '</p>';
+                content += '</div>';
+                content += '</div>';
+                content += '<div class="content">' + event.shortDesc + '<br>' + event.eventDate + '<br>' + event.startTime + ' - ' + event.endTime + '</div>';
+                content += '</div>';
+                content += '</div>';
+                content += '</div>';
+            });
+            document.getElementById("eventTable").innerHTML = content;
+            buildLinks(perPage, current);
+        } else {
+            document.getElementById("eventTable").innerHTML = "<tr><td> Unable to load the event: " + response.statusText + "</td></tr>";
+        }
+    }
+
+    function buildLinks(perPage, current) {
+        var previousButton = document.getElementById("previousButton");
+        var nextButton = document.getElementById("nextButton");
+        var currentLink = document.getElementById("currentLink");
+        var previousLink = document.getElementById("previousLink");
+        var nextLink = document.getElementById("nextLink");
+        var firstLink = document.getElementById("firstLink");
+        var lastLink = document.getElementById("lastLink");
+        var total = parseInt("<%= total %>");
+
+        firstLink.onclick = function () { fetchData(perPage, 1) };
+        previousButton.onclick = function () { fetchData(perPage, current - 1) };
+        previousLink.onclick = function () { fetchData(perPage, current - 1) };
+        currentLink.onclick = function () { fetchData(perPage, current) };
+        nextLink.onclick = function () { fetchData(perPage, current + 1) };
+        nextButton.onclick = function () { fetchData(perPage, current + 1) };
+        lastLink.onclick = function () { fetchData(perPage, Math.ceil(total / perPage)) };
+
+        previousLink.innerHTML = current - 1;
+        currentLink.innerHTML = current;
+        nextLink.innerHTML = current + 1;
+        lastLink.innerHTML = Math.ceil(total / perPage);
+
+        if (current <= 1) {
+            previousButton.setAttribute("disabled", true);
+            previousButton.onclick = null;
+            previousLink.style.display = "none";
+        } else {
+            previousButton.removeAttribute("disabled");
+            previousLink.style.display = "block";
+        }
+        if (current >= Math.ceil(total / perPage)) {
+            nextButton.setAttribute("disabled", true);
+            nextButton.onclick = null;
+            nextLink.style.display = "none";
+        } else {
+            nextButton.removeAttribute("disabled");
+            nextLink.style.display = "block";
+        }
+    }
+    fetchData(3, 1);
+</script>

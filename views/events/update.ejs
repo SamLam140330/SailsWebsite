@@ -1,0 +1,194 @@
+<!--update.ejs-->
+<form action="/events/update/<%=event.id%>" method="post">
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                <label class="label">Event Name</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Text input" name="eventName" maxlength="25"
+                        value="<%=event.eventName%>" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">Event Date</label>
+                <div class="control">
+                    <input class="input" type="date" id="eventDate" name="eventDate" value="<%=event.eventDate%>"
+                        required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                <label class="label">Short Description</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="text" placeholder="Text input" name="shortDesc" maxlength="25"
+                        value="<%=event.shortDesc%>" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">Start Time</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="time" name="startTime" min="08:30" max="22:30"
+                        value="<%=event.startTime%>" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                <label class="label">Long Description</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Textarea" name="longDesc"
+                        maxlength="125"><%=event.longDesc%></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">End Time</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="time" name="endTime" min="09:30" max="23:30" value="<%=event.endTime%>"
+                        required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Venue</label>
+                <div class="control">
+                    <div class="select">
+                        <select name="venue">
+                            <option id="AAB609" value="AAB609">AAB609</option>
+                            <option id="OEE1017" value="OEE1017">OEE1017</option>
+                            <option id="LT3" value="LT3">LT3</option>
+                            <option id="DLB702" value="DLB702">DLB702</option>
+                            <option id="FSC901" value="FSC901">FSC901</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                <label class="label">Image Url</label>
+                <div class="control">
+                    <input class="input" type="url" placeholder="https://www.hkbu.edu.hk/eng/images/logo.png"
+                        name="imageURL" pattern="https?:\/\/.*\.(?:png|jpg|jpeg|gif|tiff|raw)"
+                        value="<%=event.imageURL%>" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <label class="label">Quota</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="number" placeholder="Text input" name="quota" min=1 max=60
+                        value="<%=event.quota%>" required>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="field">
+                <label class="label">Organizer</label>
+                <div class="control">
+                    <div class="select">
+                        <select name="organizer">
+                            <option id="Department of Computer Science" value="Department of Computer Science">
+                                Department of Computer Science</option>
+                            <option id="Student Union" value="Student Union">Student Union</option>
+                            <option id="Music Society" value="Music Society">Music Society</option>
+                            <option id="Band Society" value="Band Society">Band Society</option>
+                            <option id="Dance Society" value="Dance Society">Dance Society</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" id="isHighlight" name="isHighlight">
+                        Highlight Event
+                    </label>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit" onclick="onButtonClicked(1)">Update</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light" type="button"
+                        onclick="location.replace('../admin')">Cancel</button>
+                </div>
+                <div class="control">
+                    <button class="button is-danger" type="submit" formaction="/events/delete/<%=event.id%>"
+                        onclick="onButtonClicked(2)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function changeMinDate() {
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = today.getMonth() + 1;
+        var dd = today.getDate();
+        if (dd < 10) {
+            dd = "0" + dd
+        }
+        if (mm < 10) {
+            mm = "0" + mm
+        }
+        today = yyyy + "-" + mm + "-" + dd;
+        document.getElementById("eventDate").setAttribute("min", today);
+    }
+
+    function changeSelectedOptions() {
+        document.getElementById("<%=event.venue%>").selected = "true";
+        document.getElementById("<%=event.organizer%>").selected = "true";
+    }
+
+    function isHighlighted() {
+        if ("<%=event.isHighlight%>" === "on") {
+            document.getElementById("isHighlight").checked = true;
+        }
+    }
+
+    function onButtonClicked(status) {
+        if (status === 1) {
+            if (document.getElementById("isHighlight").checked === false) {
+                document.getElementById("isHighlight").value = 'off';
+                document.getElementById("isHighlight").checked = true;
+            }
+            alert("Successfully updated an event");
+        } else {
+            alert("Successfully deleted an event");
+        }
+    }
+    changeMinDate();
+    changeSelectedOptions();
+    isHighlighted();
+</script>

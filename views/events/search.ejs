@@ -1,0 +1,174 @@
+<!--search.ejs-->
+<div id="searchDiv">
+    <div class="columns is-variable is-1">
+        <div class="column is-two-thirds">
+            <div class="columns is-variable is-1">
+                <div class="column is-half" v-for="event in events">
+                    <div class="box">
+                        <div class="card-image">
+                            <figure class="image is-5by3">
+                                <img :alt="event.name" :src="event.imageURL">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img alt="placeholders" src="https://bulma.io/images/placeholders/96x96.png">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">
+                                        {{ event.eventName }}
+                                    </p>
+                                    <p class="subtitle is-6">
+                                        {{ event.organizer }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                {{ event.shortDesc }}
+                                <br>
+                                {{ event.eventDate }}
+                                <br>
+                                {{ event.startTime }} - {{ event.endTime }}
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-one-third">
+            <form action="/events/search" method="get">
+                <div class="column">
+                    <b-field label="Event Name">
+                        <b-input v-model.trim="eventName" placeholder="Text input"></b-input>
+                    </b-field>
+                    <b-field label="Organizer">
+                        <b-select v-model="organizer" placeholder="Please pick a organizer">
+                            <option value=""></option>
+                            <option value="Department of Computer Science">Department of Computer Science</option>
+                            <option value="Student Union">Student Union</option>
+                            <option value="Music Society">Music Society</option>
+                            <option value="Band Society">Band Society</option>
+                            <option value="Dance Society">Dance Society</option>
+                        </b-select>
+                    </b-field>
+                    <b-field label="Start Date">
+                        <b-datepicker v-model="startDate" :min-date="today" icon="calendar-today" locale="en-GB"
+                            editable>
+                        </b-datepicker>
+                    </b-field>
+                    <b-field label="End Date">
+                        <b-datepicker v-model="endDate" :min-date="startDate" icon="calendar-today" locale="en-GB"
+                            editable>
+                        </b-datepicker>
+                    </b-field>
+                    <b-field label="Venue">
+                        <b-select v-model="venue" placeholder="Please pick a venue">
+                            <option value=""></option>
+                            <option value="AAB609">AAB609</option>
+                            <option value="OEE1017">OEE1017</option>
+                            <option value="LT3">LT3</option>
+                            <option value="DLB702">DLB702</option>
+                            <option value="FSC901">FSC901</option>
+                        </b-select>
+                    </b-field>
+                    <b-button type="is-link" @click="inputValidation()">Submit</b-button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="column is-two-thirds">
+        <b-pagination :total="total" v-model="current" :range-before="rangeBefore" :range-after="rangeAfter"
+            :order="order" :size="size" :simple="isSimple" :rounded="isRounded" :per-page="perPage"
+            :icon-prev="prevIcon" :icon-next="nextIcon" aria-next-label="Next page" aria-previous-label="Previous page"
+            aria-page-label="Page" aria-current-label="Current page" @change="fetchData()">
+        </b-pagination>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+<script src="https://unpkg.com/buefy/dist/components/table"></script>
+<script src="https://unpkg.com/buefy/dist/components/input"></script>
+<script>
+    new Vue({
+        el: '#searchDiv',
+        data: {
+            total: parseInt("<%=total%>"),
+            events: [],
+            current: 1,
+            perPage: 2,
+            rangeBefore: 1,
+            rangeAfter: 1,
+            order: '',
+            size: '',
+            isSimple: false,
+            isRounded: false,
+            prevIcon: 'chevron-left',
+            nextIcon: 'chevron-right',
+
+            eventName: '',
+            organizer: '',
+            venue: '',
+            startDate: new Date(),
+            endDate: new Date(),
+            today: new Date(),
+            isSearched: false,
+        },
+        mounted: function () {
+            this.firstLoadData(this.perPage, this.current);
+        },
+        methods: {
+            firstLoadData: async function () {
+                var response = await fetch('/events/search?perPage=' + this.perPage + '&current=' + this.current);
+                if (response.ok) {
+                    this.events = await response.json();
+                } else {
+                    alert(response.statusText);
+                }
+            },
+            inputValidation: function () {
+                if (!this.startDate) {
+                    return alert('Please input the Start Date');
+                } else if (!this.endDate) {
+                    return alert('Please input the End Date');
+                } else if (Date.parse(this.endDate) < Date.parse(this.startDate)) {
+                    return alert('The End Date should be greater than the Start Date');
+                }
+                this.isSearched = true;
+                this.fetchData();
+            },
+            fetchData: async function () {
+                if (this.isSearched === false) {
+                    return this.firstLoadData();
+                }
+                var startDateInput = this.startDate.toLocaleDateString('en-GB').split('/').reverse().join('-');
+                var endDateInput = this.endDate.toLocaleDateString('en-GB').split('/').reverse().join('-');
+                var searchData = { "eventName": this.eventName, "organizer": this.organizer, "venue": this.venue, "startDate": startDateInput, "endDate": endDateInput };
+
+                var response = await fetch('/events/search?perPage=' + this.perPage + '&current=' + this.current, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(searchData),
+                });
+
+                if (response.ok) {
+                    var data = await response.json();
+                    var total = data[data.length - 1];
+                    this.total = total;
+                    var events = data.slice(0, -1);
+                    this.events = events;
+                } else {
+                    alert(response.statusText);
+                }
+            },
+        },
+    })
+</script>

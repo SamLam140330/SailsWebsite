@@ -1,0 +1,28 @@
+<!--home.ejs-->
+<div class="columns is-multiline">
+    <% events.forEach( function(thatEvent) { %>
+        <div class="column card is-half">
+            <div class="columns">
+                <div class="column is-half">
+                    <figure class="image is-5by3">
+                        <img alt="<%=thatEvent.eventName%>" src=<%=thatEvent.imageURL%>>
+                    </figure>
+                </div>
+
+                <div class="column is-half">
+                    <div class="box">
+                        <h2 class="title">
+                            <%=thatEvent.eventName%>
+                        </h2>
+                    </div>
+
+                    <div class="block">
+                        &nbsp; &nbsp; &nbsp; &nbsp; <a href="http://localhost:1337/events/detail/<%=thatEvent.id%>">
+                            <%=thatEvent.shortDesc%>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+</div>
