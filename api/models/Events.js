@@ -11,47 +11,47 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     eventName: {
-      type: 'string',
+      type: 'string'
     },
 
     organizer: {
-      type: 'string',
+      type: 'string'
     },
 
     venue: {
-      type: 'string',
+      type: 'string'
     },
 
     quota: {
-      type: 'number',
+      type: 'number'
     },
 
     shortDesc: {
-      type: 'string',
+      type: 'string'
     },
 
     longDesc: {
-      type: 'string',
+      type: 'string'
     },
 
     eventDate: {
-      type: 'string',
+      type: 'string'
     },
 
     startTime: {
-      type: 'string',
+      type: 'string'
     },
 
     endTime: {
-      type: 'string',
+      type: 'string'
     },
 
     imageURL: {
-      type: 'string',
+      type: 'string'
     },
 
     isHighlight: {
-      type: 'string',
+      type: 'string'
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -63,7 +63,7 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     student: {
       collection: 'User',
-      via: 'event',
-    },
-  },
+      via: 'event'
+    }
+  }
 };

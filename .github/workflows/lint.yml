@@ -1,0 +1,19 @@
+name: PHP Linting
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  phplint:
+    name: Run php lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Run PHP format
+        uses: StephaneBour/actions-php-lint@8.1
+        with:
+          dir: './htdocs'

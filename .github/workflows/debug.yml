@@ -1,0 +1,21 @@
+name: Debug Test
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  debug:
+    name: Run debug test
+    runs-on: ubuntu-latest
+    container:
+      image: node:erbium
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Run ESLint & Test
+        run: |
+          npm install
+          npm run test

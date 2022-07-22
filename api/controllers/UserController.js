@@ -11,6 +11,7 @@ module.exports = {
     if (req.method === 'GET') {
       return res.view('user/login');
     }
+
     if (!req.body.username || !req.body.password) {
       return res.badRequest();
     }
@@ -92,5 +93,5 @@ module.exports = {
 
     await User.removeFromCollection(userID, 'event').members(eventID);
     return res.ok();
-  },
+  }
 };

@@ -15,14 +15,12 @@ module.exports.policies = {
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
-  // '*': true,
-
   EventsController: {
     admin: 'isAdmin',
     create: 'isAdmin',
     update: 'isAdmin',
     delete: 'isAdmin',
     student: 'isAdmin',
-    registered: 'isStudent',
-  },
+    registered: 'isStudent'
+  }
 };

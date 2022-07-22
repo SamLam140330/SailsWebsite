@@ -1,36 +1,36 @@
 {
-  "name": "project-milestone-3",
+  "name": "sails-website",
   "private": true,
-  "version": "0.0.3",
-  "description": "COMP3047 Software Engineering Assignment",
+  "version": "1.0.0",
+  "description": "Just an old assignment that wants to continue to be maintained",
   "keywords": [],
   "dependencies": {
-    "@sailshq/connect-redis": "^3.2.1",
-    "@sailshq/lodash": "^3.10.3",
-    "@sailshq/socket.io-redis": "^5.2.0",
-    "grunt": "1.0.4",
-    "sails": "^1.5.0",
-    "sails-hook-grunt": "^4.0.0",
-    "sails-hook-organics": "^2.2.0",
-    "sails-hook-orm": "^3.0.2",
-    "sails-hook-sockets": "^2.0.0"
+    "@sailshq/connect-redis": "3.2.1",
+    "@sailshq/lodash": "3.10.4",
+    "@sailshq/socket.io-redis": "5.2.0",
+    "grunt": "1.5.3",
+    "sails": "1.5.2",
+    "sails-hook-grunt": "5.0.0",
+    "sails-hook-organics": "2.2.0",
+    "sails-hook-orm": "4.0.1",
+    "sails-hook-sockets": "2.0.1"
   },
   "devDependencies": {
-    "eslint": "5.16.0"
+    "eslint": "8.19.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production node app.js",
+    "start": "SET NODE_ENV=production && SET PORT=80 && node app.js",
     "test": "npm run lint && echo 'Done.'",
-    "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=10 --report-unused-disable-directives && echo '✔  Your .js files look good.'"
+    "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=6 --report-unused-disable-directives && echo '✔  Your .js files look good.'"
   },
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/UG-CS-HKBU/comp3047-project-web-SamLam140330.git"
+    "url": "git://github.com/SamLam140330/SailsWebsite.git"
   },
   "author": "SamLam140330",
   "license": "MIT",
   "engines": {
-    "node": "^14.18"
+    "node": "^16.16"
   }
 }

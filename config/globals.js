@@ -10,14 +10,12 @@
  */
 
 module.exports.globals = {
-
   /****************************************************************************
   *                                                                           *
   * Whether to expose the locally-installed Lodash as a global variable       *
   * (`_`), making  it accessible throughout your app.                         *
   *                                                                           *
   ****************************************************************************/
-
   _: require('@sailshq/lodash'),
 
   /****************************************************************************
@@ -28,7 +26,6 @@ module.exports.globals = {
   * > Your code can (and probably should) use `await` as much as possible.    *
   *                                                                           *
   ****************************************************************************/
-
   async: false,
 
   /****************************************************************************
@@ -37,7 +34,6 @@ module.exports.globals = {
   * (See the link at the top of this file for more information.)              *
   *                                                                           *
   ****************************************************************************/
-
   models: true,
 
   /****************************************************************************
@@ -46,7 +42,5 @@ module.exports.globals = {
   * making it accessible throughout your app.                                 *
   *                                                                           *
   ****************************************************************************/
-
-  sails: true,
-
+  sails: true
 };

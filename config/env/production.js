@@ -18,10 +18,7 @@
  * For more best practices and tips, see:
  * https://sailsjs.com/docs/concepts/deployment
  */
-
 module.exports = {
-
-
   /**************************************************************************
   *                                                                         *
   * Tell Sails what database(s) it should use in production.                *
@@ -30,7 +27,6 @@ module.exports = {
   *                                                                         *
   **************************************************************************/
   datastores: {
-
     /***************************************************************************
     *                                                                          *
     * Configure your default production database.                              *
@@ -70,16 +66,11 @@ module.exports = {
       * https://sailsjs.com/config/datastores                                     *
       *                                                                           *
       ****************************************************************************/
-      // ssl: true,
-
+      ssl: true,
     },
-
   },
 
-
-
   models: {
-
     /***************************************************************************
     *                                                                          *
     * To help avoid accidents, Sails automatically sets the automigration      *
@@ -91,7 +82,6 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     migrate: 'safe',
-
     /***************************************************************************
     *                                                                          *
     * If, in production, this app has access to physical-layer CASCADE         *
@@ -102,10 +92,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     // cascadeOnDestroy: false,
-
   },
-
-
 
   /**************************************************************************
   *                                                                         *
@@ -118,10 +105,9 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   blueprints: {
+    rest: false,
     shortcuts: false,
   },
-
-
 
   /***************************************************************************
   *                                                                          *
@@ -135,7 +121,6 @@ module.exports = {
   *                                                                          *
   ***************************************************************************/
   security: {
-
     /***************************************************************************
     *                                                                          *
     * If this app has CORS enabled (see `config/security.js`) with the         *
@@ -152,10 +137,7 @@ module.exports = {
       //   'https://example.com',
       // ]
     },
-
   },
-
-
 
   /***************************************************************************
   *                                                                          *
@@ -168,7 +150,6 @@ module.exports = {
   *                                                                          *
   ***************************************************************************/
   session: {
-
     /***************************************************************************
     *                                                                          *
     * Production session store configuration.                                  *
@@ -221,13 +202,10 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cookie: {
-      // secure: true,
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     },
-
   },
-
-
 
   /**************************************************************************
   *                                                                          *
@@ -240,7 +218,6 @@ module.exports = {
   *                                                                          *
   ***************************************************************************/
   sockets: {
-
     /***************************************************************************
     *                                                                          *
     * Uncomment the `onlyAllowOrigins` whitelist below to configure which      *
@@ -250,11 +227,10 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    // onlyAllowOrigins: [
-    //   'https://example.com',
-    //   'https://staging.example.com',
-    // ],
-
+    onlyAllowOrigins: [
+      'https://localhost',
+      'https://localhost:1337'
+    ],
 
     /***************************************************************************
     *                                                                          *
@@ -279,10 +255,7 @@ module.exports = {
     // sails_sockets__url=redis://admin:myc00lpAssw2D@bigsquid.redistogo.com:9562/0
     // ```
     //--------------------------------------------------------------------------
-
   },
-
-
 
   /**************************************************************************
   *                                                                         *
@@ -295,10 +268,7 @@ module.exports = {
     level: 'debug'
   },
 
-
-
   http: {
-
     /***************************************************************************
     *                                                                          *
     * The number of milliseconds to cache static assets in production.         *
@@ -325,11 +295,8 @@ module.exports = {
     * (https://sailsjs.com/config/http)                                        *
     *                                                                          *
     ***************************************************************************/
-    // trustProxy: true,
-
+    trustProxy: true,
   },
-
-
 
   /**************************************************************************
   *                                                                         *
@@ -340,9 +307,7 @@ module.exports = {
   * this, just try deploying without setting it and see if it works.)       *
   *                                                                         *
   ***************************************************************************/
-  // port: 80,
-
-
+  port: 80,
 
   /**************************************************************************
   *                                                                         *
@@ -361,9 +326,11 @@ module.exports = {
   * > https://sailsjs.com/config/*#?sailsconfigssl                          *
   *                                                                         *
   **************************************************************************/
-  // ssl: undefined,
-
-
+  ssl: {
+    ca: require('fs').readFileSync(__dirname + '/ssl/ca-bundle.pem'),
+    key: require('fs').readFileSync(__dirname + '/ssl/key.pem'),
+    cert: require('fs').readFileSync(__dirname + '/ssl/cert.pem')
+  },
 
   /**************************************************************************
   *                                                                         *
@@ -374,9 +341,8 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'https://example.com',
-    internalEmailAddress: 'support@example.com',
-
+    baseUrl: 'https://localhost:1337',
+    internalEmailAddress: 'support@localhost.com',
     // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
     // stripeSecret: 'sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm',
     //--------------------------------------------------------------------------
@@ -389,9 +355,5 @@ module.exports = {
     // sails_custom__stripeSecret=sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm
     // ```
     //--------------------------------------------------------------------------
-
   },
-
-
-
 };

@@ -14,8 +14,6 @@
  */
 
 module.exports.models = {
-
-
   /***************************************************************************
   *                                                                          *
   * Whether model methods like `.create()` and `.update()` should ignore     *
@@ -34,9 +32,7 @@ module.exports.models = {
   * > https://sailsjs.com/docs/concepts/orm/model-settings#?schema           *
   *                                                                          *
   ***************************************************************************/
-
   // schema: true,
-
 
   /***************************************************************************
   *                                                                          *
@@ -52,9 +48,7 @@ module.exports.models = {
   * > https://sailsjs.com/docs/concepts/orm/model-settings#?migrate          *
   *                                                                          *
   ***************************************************************************/
-
   // migrate: 'alter',
-
 
   /***************************************************************************
   *                                                                          *
@@ -67,11 +61,10 @@ module.exports.models = {
   * > https://sailsjs.com/docs/concepts/orm/model-settings#?attributes       *
   *                                                                          *
   ***************************************************************************/
-
   attributes: {
     createdAt: { type: 'number', autoCreatedAt: true, },
     updatedAt: { type: 'number', autoUpdatedAt: true, },
-    id: { type: 'number', autoIncrement: true, },
+    id: { type: 'number', autoIncrement: true, }
     //--------------------------------------------------------------------------
     //  /\   Using MongoDB?
     //  ||   Replace `id` above with this instead:
@@ -84,7 +77,6 @@ module.exports.models = {
     // https://sailsjs.com/docs/tutorials/using-mongo-db
     //--------------------------------------------------------------------------
   },
-
 
   /******************************************************************************
   *                                                                             *
@@ -99,11 +91,9 @@ module.exports.models = {
   * > https://sailsjs.com/docs/concepts/orm/model-settings#?dataEncryptionKeys  *
   *                                                                             *
   ******************************************************************************/
-
   dataEncryptionKeys: {
     default: 'QuVmvXh3FBez6lFYjhrW5t/tLRlH47ogJNlPI7+GttA='
   },
-
 
   /***************************************************************************
   *                                                                          *
@@ -117,8 +107,5 @@ module.exports.models = {
   * (For production configuration, see `config/env/production.js`.)          *
   *                                                                          *
   ***************************************************************************/
-
   cascadeOnDestroy: true
-
-
 };

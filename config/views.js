@@ -15,7 +15,6 @@
  */
 
 module.exports.views = {
-
   /***************************************************************************
   *                                                                          *
   * Extension to use for your views. When calling `res.view()` in an action, *
@@ -24,7 +23,6 @@ module.exports.views = {
   * `views/homepage.ejs` file.                                               *
   *                                                                          *
   ***************************************************************************/
-
   // extension: 'ejs',
 
   /***************************************************************************
@@ -35,7 +33,5 @@ module.exports.views = {
   * Note that layouts only work with the built-in EJS view engine!           *
   *                                                                          *
   ***************************************************************************/
-
   layout: 'layouts/layout'
-
 };

@@ -12,9 +12,9 @@ module.exports = {
     var highlightEvents = await Events.find({
       where: { isHighlight: 'on' },
       limit: limitEventShow,
-      sort: 'id DESC',
+      sort: 'id DESC'
     });
-    return res.view('events/home', { events: highlightEvents, });
+    return res.view('events/home', { events: highlightEvents });
   },
 
   // action - create
@@ -56,10 +56,10 @@ module.exports = {
     var thoseEvents = await Events.find({
       where: whereClause,
       limit: perPage,
-      skip: perPage * (Math.max(req.query.current - 1, 0) || 0),
+      skip: perPage * (Math.max(req.query.current - 1, 0) || 0)
     });
     var count = await Events.count({
-      where: whereClause,
+      where: whereClause
     });
 
     if (req.wantsJSON) {
@@ -88,7 +88,7 @@ module.exports = {
         if (!updatedEvent) {
           return res.notFound();
         }
-        return res.redirect(301, '../admin');
+        return res.redirect(301, '/events/admin');
       }
     }
   },
@@ -102,7 +102,7 @@ module.exports = {
       if (!deletedEvent) {
         return res.notFound();
       }
-      return res.redirect(301, '../admin');
+      return res.redirect(301, '/events/admin');
     }
   },
 
@@ -152,14 +152,14 @@ module.exports = {
     var thoseEvents = await Events.find({
       where: whereClause,
       limit: perPage,
-      skip: perPage * (Math.max(req.query.current - 1, 0) || 0),
+      skip: perPage * (Math.max(req.query.current - 1, 0) || 0)
     });
 
     if (req.wantsJSON) {
       return res.json(thoseEvents);
     } else {
       var thoseEventsCount = await Events.count({
-        where: whereClause,
+        where: whereClause
       });
       return res.view('events/registered', { total: thoseEventsCount });
     }
@@ -182,9 +182,9 @@ module.exports = {
       var whereClause = {};
       whereClause.id = studentList;
       var thoseStudents = await User.find({
-        where: whereClause,
+        where: whereClause
       });
       return res.view('events/student', { allStudents: thoseStudents });
     }
-  },
+  }
 };

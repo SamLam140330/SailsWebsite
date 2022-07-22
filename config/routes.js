@@ -17,7 +17,6 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
   // '/': { view: 'pages/homepage' },
 
   /***************************************************************************
@@ -59,5 +58,5 @@ module.exports.routes = {
   'POST /user/logout': 'UserController.logout',
 
   'POST /user/event/': 'UserController.add',
-  'DELETE /user/event/': 'UserController.remove',
+  'DELETE /user/event/': 'UserController.remove'
 };

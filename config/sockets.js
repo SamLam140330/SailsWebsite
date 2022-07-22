@@ -10,7 +10,6 @@
  */
 
 module.exports.sockets = {
-
   /***************************************************************************
   *                                                                          *
   * `transports`                                                             *
@@ -26,9 +25,7 @@ module.exports.sockets = {
   * > https://sailsjs.com/docs/reference/web-sockets/socket-client           *
   *                                                                          *
   ***************************************************************************/
-
   // transports: [ 'websocket' ],
-
 
   /***************************************************************************
   *                                                                          *
@@ -41,7 +38,6 @@ module.exports.sockets = {
   * https://sailsjs.com/config/sockets#?beforeconnect                        *
   *                                                                          *
   ***************************************************************************/
-
   // beforeConnect: function(handshake, proceed) {
   //
   //   // `true` allows the socket to connect.
@@ -49,7 +45,6 @@ module.exports.sockets = {
   //   return proceed(undefined, true);
   //
   // },
-
 
   /***************************************************************************
   *                                                                          *
@@ -59,7 +54,6 @@ module.exports.sockets = {
   * disconnects                                                              *
   *                                                                          *
   ***************************************************************************/
-
   // afterDisconnect: function(session, socket, done) {
   //
   //   // By default: do nothing.
@@ -68,15 +62,11 @@ module.exports.sockets = {
   //
   // },
 
-
   /***************************************************************************
   *                                                                          *
   * Whether to expose a 'GET /__getcookie' route that sets an HTTP-only      *
   * session cookie.                                                          *
   *                                                                          *
   ***************************************************************************/
-
   // grant3rdPartyCookie: true,
-
-
 };

@@ -13,13 +13,13 @@ module.exports = {
     username: {
       type: 'string',
       unique: true,
-      required: true,
+      required: true
     },
 
     role: {
       type: 'string',
       isIn: ['admin', 'student'],
-      defaultsTo: 'student',
+      defaultsTo: 'student'
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -31,11 +31,11 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     event: {
       collection: 'Events',
-      via: 'student',
-    },
+      via: 'student'
+    }
   },
 
   customToJSON: function () {
     return _.omit(this, ['password']);
-  },
+  }
 };

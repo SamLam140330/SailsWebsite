@@ -10,7 +10,6 @@
  */
 
 module.exports.session = {
-
   /***************************************************************************
   *                                                                          *
   * Session secret is automatically generated when your new app is created   *
@@ -18,8 +17,7 @@ module.exports.session = {
   * of your users, forcing them to log in again.                             *
   *                                                                          *
   ***************************************************************************/
-  secret: '6bf86089baa0fe775d7ad1a71d225e44',
-
+  secret: '6bf86089baa0fe775d7ad1a71d225e44'
 
   /***************************************************************************
   *                                                                          *
@@ -35,5 +33,4 @@ module.exports.session = {
   // isSessionDisabled: function (req){
   //   return !!req.path.match(req._sails.LOOKS_LIKE_ASSET_RX);
   // },
-
 };
