@@ -5,18 +5,20 @@
   "description": "Just an old assignment that wants to continue to be maintained",
   "keywords": [],
   "dependencies": {
-    "@sailshq/connect-redis": "3.2.1",
-    "@sailshq/lodash": "3.10.4",
-    "@sailshq/socket.io-redis": "5.2.0",
-    "grunt": "1.5.3",
-    "sails": "1.5.3",
-    "sails-hook-grunt": "5.0.0",
-    "sails-hook-organics": "2.2.1",
-    "sails-hook-orm": "4.0.2",
-    "sails-hook-sockets": "2.0.3"
+    "@sailshq/connect-redis": "^6.1.3",
+    "@sailshq/lodash": "^3.10.4",
+    "@sailshq/socket.io-redis": "^6.1.2",
+    "@sailshq/upgrade": "^1.0.9",
+    "grunt": "^1.6.1",
+    "lodash": "^4.17.21",
+    "sails": "^1.5.9",
+    "sails-hook-grunt": "^5.0.0",
+    "sails-hook-organics": "^2.2.2",
+    "sails-hook-orm": "^4.0.2",
+    "sails-hook-sockets": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "8.19.0"
+    "eslint": "^8.57.0"
   },
   "scripts": {
     "start": "SET NODE_ENV=production && SET PORT=80 && node app.js",
@@ -31,6 +33,6 @@
   "author": "SamLam140330",
   "license": "MIT",
   "engines": {
-    "node": "^16.16"
+    "node": "^18.19.1"
   }
 }
