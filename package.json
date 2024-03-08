@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "eslint": "^8.57.0",
-    "grunt-sync": "^0.8.2",
+    "grunt-sync": "^0.8.2"
   },
   "scripts": {
     "start": "SET NODE_ENV=production && SET PORT=80 && node app.js",
