@@ -9,8 +9,7 @@ jobs:
   debug:
     name: Run linting test
     runs-on: ubuntu-latest
-    container:
-      image: node:erbium
+    container: node:18
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
