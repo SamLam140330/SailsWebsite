@@ -56,17 +56,18 @@ module.exports = {
       //--------------------------------------------------------------------------
 
       /****************************************************************************
-      *                                                                           *
+      *                                                                           *
       * More adapter-specific options                                             *
-      *                                                                           *
+      *                                                                           *
       * > For example, for some hosted PostgreSQL providers (like Heroku), the    *
-      * > extra `ssl: true` option is mandatory and must be provided.             *
-      *                                                                           *
-      * More info:                                                                *
-      * https://sailsjs.com/config/datastores                                     *
-      *                                                                           *
+      * > extra `ssl` object with a `rejectUnauthorized` option must be provided. *
+      *                                                                           *
+      * More info:                                                                *
+      * https://sailsjs.com/config/datastores                                     *
+      *                                                                           *
       ****************************************************************************/
-      ssl: true,
+      // ssl: true // old
+      // ssl: { rejectUnauthorized: true },
     },
   },
 
@@ -178,7 +179,22 @@ module.exports = {
     //
     //--------------------------------------------------------------------------
 
-
+    /***************************************************************************
+    *                                                                          *
+    * Production configuration for the session ID cookie name.                 *
+    *                                                                          *
+    * We reccomend prefixing your session cookie with `__Host-`, this limits   *
+    * the scope of your cookie to a single origin to protect against same-site *
+    * attacks.                                                                 *
+    *                                                                          *
+    * Note that with the `__Host-` prefix, session cookies will _not_ be sent  *
+    * unless `sails.config.cookie.secure` is set to `true`.                    *
+    *                                                                          *
+    * Read more:                                                               *
+    * https://sailsjs.com/config/session#?the-session-id-cookie                *
+    *                                                                          *
+    ***************************************************************************/
+    // name: '__Host-sails.sid',
 
     /***************************************************************************
     *                                                                          *
