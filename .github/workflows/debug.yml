@@ -7,7 +7,7 @@ on:
 
 jobs:
   debug:
-    name: Run debug test
+    name: Run linting test
     runs-on: ubuntu-latest
     container:
       image: node:erbium
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         
-      - name: Run ESLint & Test
+      - name: Run ESLint test
         run: |
           npm install
           npm run test
