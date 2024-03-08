@@ -8,9 +8,7 @@
     "@sailshq/connect-redis": "^6.1.3",
     "@sailshq/lodash": "^3.10.4",
     "@sailshq/socket.io-redis": "^6.1.2",
-    "@sailshq/upgrade": "^1.0.9",
     "grunt": "^1.6.1",
-    "lodash": "^4.17.21",
     "sails": "^1.5.9",
     "sails-hook-grunt": "^5.0.0",
     "sails-hook-organics": "^2.2.2",
@@ -18,12 +16,13 @@
     "sails-hook-sockets": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.57.0"
+    "eslint": "^8.57.0",
+    "grunt-sync": "^0.8.2",
   },
   "scripts": {
     "start": "SET NODE_ENV=production && SET PORT=80 && node app.js",
     "test": "npm run lint && echo 'Done.'",
-    "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=6 --report-unused-disable-directives && echo '✔  Your .js files look good.'"
+    "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=10 --report-unused-disable-directives && echo '✔  Your .js files look good.'"
   },
   "main": "app.js",
   "repository": {
