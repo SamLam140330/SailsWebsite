@@ -1,29 +1,29 @@
 <!--admin.ejs-->
 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+  <tr>
+    <th style="width:10%">ID</th>
+    <th style="width:30%">Event</th>
+    <th style="width:30%">Organizer</th>
+    <th style="width:30%">Registered Students</th>
+  </tr>
+  <% events.forEach( function(allEvents) { %>
     <tr>
-        <th style="width:10%">ID</th>
-        <th style="width:30%">Event</th>
-        <th style="width:30%">Organizer</th>
-        <th style="width:30%">Registered Students</th>
+      <td>
+        <%=allEvents.id%>
+      </td>
+      <td>
+        <a href="/events/update/<%=allEvents.id%>">
+          <%=allEvents.eventName%>
+        </a>
+      </td>
+      <td>
+        <%=allEvents.organizer%>
+      </td>
+      <td>
+        <a href="/events/<%=allEvents.id%>/student">
+          Registered Students
+        </a>
+      </td>
     </tr>
-    <% events.forEach( function(allEvents) { %>
-        <tr>
-            <td>
-                <%=allEvents.id%>
-            </td>
-            <td>
-                <a href="/events/update/<%=allEvents.id%>">
-                    <%=allEvents.eventName%>
-                </a>
-            </td>
-            <td>
-                <%=allEvents.organizer%>
-            </td>
-            <td>
-                <a href="/events/<%=allEvents.id%>/student">
-                    Registered Students
-                </a>
-            </td>
-        </tr>
-        <% }); %>
+    <% }); %>
 </table>

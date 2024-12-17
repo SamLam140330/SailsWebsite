@@ -1,18 +1,18 @@
 <!--student.ejs-->
 <p>Registered Students</p>
 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+  <tr>
+    <th style="width:30%">Student ID</th>
+    <th style="width:70%">Student Name</th>
+  </tr>
+  <% allStudents.forEach( function(thoseStudents) { %>
     <tr>
-        <th style="width:30%">Student ID</th>
-        <th style="width:70%">Student Name</th>
+      <td>
+        <%=thoseStudents.id%>
+      </td>
+      <td>
+        <%=thoseStudents.username%>
+      </td>
     </tr>
-    <% allStudents.forEach( function(thoseStudents) { %>
-        <tr>
-            <td>
-                <%=thoseStudents.id%>
-            </td>
-            <td>
-                <%=thoseStudents.username%>
-            </td>
-        </tr>
-        <% }); %>
+    <% }); %>
 </table>

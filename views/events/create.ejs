@@ -1,174 +1,173 @@
 <!--create.ejs-->
 <form action="/events/create" method="post" name="eventCreate" onsubmit="return validateForm()">
-    <div class="columns">
-        <div class="column">
-            <div class="field">
-                <label class="label">Event Name</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="Text input" name="eventName" maxlength="25" required>
-                </div>
-            </div>
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <label class="label">Event Name</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input" name="eventName" maxlength="25" required>
         </div>
-
-        <div class="column">
-            <div class="field">
-                <label class="label">Event Date</label>
-                <div class="control">
-                    <input class="input" type="date" id="eventDate" name="eventDate" required>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <div class="columns">
-        <div class="column">
-            <div class="field">
-                <label class="label">Short Description</label>
-                <div class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Text input" name="shortDesc" maxlength="25" required>
-                </div>
-            </div>
+    <div class="column">
+      <div class="field">
+        <label class="label">Event Date</label>
+        <div class="control">
+          <input class="input" type="date" id="eventDate" name="eventDate" required>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="column">
-            <div class="field">
-                <label class="label">Start Time</label>
-                <div class="control has-icons-left">
-                    <input class="input" type="time" name="startTime" min="08:30" max="22:30" required>
-                </div>
-            </div>
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <label class="label">Short Description</label>
+        <div class="control has-icons-left">
+          <input class="input" type="text" placeholder="Text input" name="shortDesc" maxlength="25" required>
         </div>
+      </div>
     </div>
 
-    <div class="columns">
-        <div class="column">
-            <div class="field">
-                <label class="label">Long Description</label>
-                <div class="control">
-                    <textarea class="textarea" placeholder="Textarea" name="longDesc" maxlength="125"></textarea>
-                </div>
-            </div>
+    <div class="column">
+      <div class="field">
+        <label class="label">Start Time</label>
+        <div class="control has-icons-left">
+          <input class="input" type="time" name="startTime" min="08:30" max="22:30" required>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="column">
-            <div class="field">
-                <label class="label">End Time</label>
-                <div class="control has-icons-left">
-                    <input class="input" type="time" name="endTime" min="09:30" max="23:30" required>
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Venue</label>
-                <div class="control">
-                    <div class="select">
-                        <select name="venue">
-                            <option value="" selected disabled>Select dropdown</option>
-                            <option value="AAB609">AAB609</option>
-                            <option value="OEE1017">OEE1017</option>
-                            <option value="LT3">LT3</option>
-                            <option value="DLB702">DLB702</option>
-                            <option value="FSC901">FSC901</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <label class="label">Long Description</label>
+        <div class="control">
+          <textarea class="textarea" placeholder="Textarea" name="longDesc" maxlength="125"></textarea>
         </div>
+      </div>
     </div>
 
-    <div class="columns">
-        <div class="column">
-            <div class="field">
-                <label class="label">Image Url</label>
-                <div class="control">
-                    <input class="input" type="url" placeholder="https://www.hkbu.edu.hk/eng/images/logo.png"
-                        name="imageURL" pattern="https?:\/\/.*\.(?:png|jpg|jpeg|gif|tiff|raw)" required>
-                </div>
-            </div>
+    <div class="column">
+      <div class="field">
+        <label class="label">End Time</label>
+        <div class="control has-icons-left">
+          <input class="input" type="time" name="endTime" min="09:30" max="23:30" required>
         </div>
+      </div>
 
-        <div class="column">
-            <div class="field">
-                <label class="label">Quota</label>
-                <div class="control has-icons-left">
-                    <input class="input" type="number" placeholder="Text input" name="quota" min=1 max=60 required>
-                </div>
-            </div>
+      <div class="field">
+        <label class="label">Venue</label>
+        <div class="control">
+          <div class="select">
+            <select name="venue">
+              <option value="" selected disabled>Select dropdown</option>
+              <option value="AAB609">AAB609</option>
+              <option value="OEE1017">OEE1017</option>
+              <option value="LT3">LT3</option>
+              <option value="DLB702">DLB702</option>
+              <option value="FSC901">FSC901</option>
+            </select>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <label class="label">Image Url</label>
+        <div class="control">
+          <input class="input" type="url" placeholder="https://www.hkbu.edu.hk/eng/images/logo.png" name="imageURL"
+            pattern="https?:\/\/.*\.(?:png|jpg|jpeg|gif|tiff|raw)" required>
+        </div>
+      </div>
     </div>
 
-    <div class="columns">
-        <div class="column">
-            <div class="field">
-                <label class="label">Organizer</label>
-                <div class="control">
-                    <div class="select">
-                        <select name="organizer">
-                            <option value="" selected disabled>Select dropdown</option>
-                            <option value="Department of Computer Science">Department of Computer Science</option>
-                            <option value="Student Union">Student Union</option>
-                            <option value="Music Society">Music Society</option>
-                            <option value="Band Society">Band Society</option>
-                            <option value="Dance Society">Dance Society</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+    <div class="column">
+      <div class="field">
+        <label class="label">Quota</label>
+        <div class="control has-icons-left">
+          <input class="input" type="number" placeholder="Text input" name="quota" min=1 max=60 required>
         </div>
-
-        <div class="column">
-            <div class="field">
-                <div class="control">
-                    <label class="checkbox">
-                        <input type="checkbox" id="isHighlight" name="isHighlight">
-                        Highlight Event
-                    </label>
-                </div>
-            </div>
-
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link" type="submit">Submit</button>
-                </div>
-                <div class="control">
-                    <button class="button is-link is-light" type="button"
-                        onclick="location.replace('/')">Cancel</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <label class="label">Organizer</label>
+        <div class="control">
+          <div class="select">
+            <select name="organizer">
+              <option value="" selected disabled>Select dropdown</option>
+              <option value="Department of Computer Science">Department of Computer Science</option>
+              <option value="Student Union">Student Union</option>
+              <option value="Music Society">Music Society</option>
+              <option value="Band Society">Band Society</option>
+              <option value="Dance Society">Dance Society</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox" id="isHighlight" name="isHighlight">
+            Highlight Event
+          </label>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link" type="submit">Submit</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-light" type="button" onclick="location.replace('/')">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>
 
 <script>
-    function changeMinDate() {
-        var today = new Date();
-        var yyyy = today.getFullYear();
-        var mm = today.getMonth() + 1;
-        var dd = today.getDate();
-        if (dd < 10) {
-            dd = "0" + dd
-        }
-        if (mm < 10) {
-            mm = "0" + mm
-        }
-        today = yyyy + "-" + mm + "-" + dd;
-        document.getElementById("eventDate").setAttribute("min", today);
+  function changeMinDate() {
+    var today = new Date();
+    var yyyy = today.getFullYear();
+    var mm = today.getMonth() + 1;
+    var dd = today.getDate();
+    if (dd < 10) {
+      dd = "0" + dd
     }
+    if (mm < 10) {
+      mm = "0" + mm
+    }
+    today = yyyy + "-" + mm + "-" + dd;
+    document.getElementById("eventDate").setAttribute("min", today);
+  }
 
-    function validateForm() {
-        if (document.forms["eventCreate"]["venue"].value === "") {
-            alert("Please select a choose for venue");
-            return false;
-        } else if (document.forms["eventCreate"]["organizer"].value === "") {
-            alert("Please select a choose for organizer");
-            return false;
-        } else {
-            if (document.getElementById("isHighlight").checked === false) {
-                document.getElementById("isHighlight").value = 'off';
-                document.getElementById("isHighlight").checked = true;
-            }
-            alert("Successfully created an event");
-        }
+  function validateForm() {
+    if (document.forms["eventCreate"]["venue"].value === "") {
+      alert("Please select a choose for venue");
+      return false;
+    } else if (document.forms["eventCreate"]["organizer"].value === "") {
+      alert("Please select a choose for organizer");
+      return false;
+    } else {
+      if (document.getElementById("isHighlight").checked === false) {
+        document.getElementById("isHighlight").value = 'off';
+        document.getElementById("isHighlight").checked = true;
+      }
+      alert("Successfully created an event");
     }
-    changeMinDate();
+  }
+  changeMinDate();
 </script>
